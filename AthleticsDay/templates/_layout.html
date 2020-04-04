@@ -22,11 +22,17 @@
                 <a class="nav-link" href="/students">Students</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Eevents">Events</a>
+                <a class="nav-link" href="/Events">Events</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
+            {% if session["loggedIn"] %}
+                <li class="nav-item">
+                    {{ session["firstName"] }}
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
     <div class="container">

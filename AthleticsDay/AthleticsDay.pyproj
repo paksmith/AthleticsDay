@@ -34,6 +34,7 @@
     <Content Include="templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="templates\login.html" />
+    <Content Include="templates\register.html" />
     <Content Include="templates\_layout.html" />
   </ItemGroup>
   <ItemGroup>
