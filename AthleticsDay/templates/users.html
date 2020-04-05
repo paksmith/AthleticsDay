@@ -1,0 +1,28 @@
+﻿{% extends "_layout.html" %}
+{% block title %}User management{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.userName }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.roleName }}</td>
+                    <td><a href="/edituser?userID={{ user.userID }}">edit</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

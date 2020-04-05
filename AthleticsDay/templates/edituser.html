@@ -1,0 +1,32 @@
+﻿{% extends "_layout.html" %}
+{% block title %}Edit user{% endblock %}
+{% block content %}
+    <form method="post" class="was-validated">
+        <input type="hidden" name="userID" value="{{ user.userID }}" />
+        <div class="form-group">
+            <label for="userName">Username:</label>
+            <input type="text" class="form-control" id="userName" value="{{ user.userName }}" name="userName" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" value="{{ user.firstName }}" name="firstName" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" value="{{ user.lastName }}" name="lastName" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+            <label for="roleID">Role ID:</label>
+            <input type="text" class="form-control" id="roleID" value="{{ user.roleID }}" name="roleID" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

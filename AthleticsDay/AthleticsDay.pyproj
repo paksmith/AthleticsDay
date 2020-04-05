@@ -31,10 +31,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="static\css\stylesheet.css" />
+    <Content Include="templates\edituser.html" />
     <Content Include="templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="templates\login.html" />
     <Content Include="templates\register.html" />
+    <Content Include="templates\users.html" />
     <Content Include="templates\_layout.html" />
   </ItemGroup>
   <ItemGroup>

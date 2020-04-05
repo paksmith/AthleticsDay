@@ -48,16 +48,60 @@ def login():
             #Login failed
             return render_template("login.html")
         else:
-            #Login succeeded'
+            #Login succeeded
             user = users[0]
             session['userName'] = user['roleID']
             session['firstName'] = user['firstName']
             session['lastName'] = user['lastName']
             session["loggedIn"] = True
-            session["roleId"] = user['roleID']
+            session["roleID"] = user['roleID']
             return redirect('/')
     else:
         return render_template("login.html")
+
+@app.route("/users")
+def manage_users():
+    if session["roleID"] == ROLE_ADMIN:
+        connection = create_connection()
+        with connection.cursor() as cursor:
+            sql  = "SELECT userID, userName, firstName, lastName, tblUsers.roleID, roleName FROM tblUsers LEFT JOIN tblRoles ON tblUsers.roleID = tblRoles.roleID;"
+            cursor.execute(sql)
+            users = cursor.fetchall()
+            connection.close()
+        return render_template("users.html", users = users)
+    else:
+        return redirect("/")
+  
+@app.route("/edituser", methods=["GET", "POST"])
+def edit_users():
+    #First mke sure we have the rights to do this stuff
+    if not session["roleID"] == ROLE_ADMIN:
+        return redirect("/")
+    else:
+        if request.method == "POST":
+            userID = request.form["userID"]
+            userName = request.form["userName"]
+            firstName = request.form["firstName"]
+            lastName = request.form["lastName"]
+            roleID = request.form["roleID"]
+            connection = create_connection()
+            with connection.cursor() as cursor:
+                sql = "UPDATE tblusers SET userName=%s, firstName=%s, lastName=%s, roleID=%s WHERE userID=%s"
+                vals = (userName, firstName, lastName, roleID, userID)
+                cursor.execute(sql, vals)
+                connection.commit()
+                connection.close()
+            return redirect("/users")
+        else:
+            userID = request.args["userID"]
+            connection = create_connection()
+            with connection.cursor() as cursor:
+                sql  = "SELECT userID, userName, firstName, lastName, tblUsers.roleID, roleName FROM tblUsers LEFT JOIN tblRoles ON tblUsers.roleID = tblRoles.roleID WHERE userID = %s;"
+                vals = (userID)
+                cursor.execute(sql, vals)
+                user = cursor.fetchone()
+                connection.close()
+            return render_template("edituser.html", user = user)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
