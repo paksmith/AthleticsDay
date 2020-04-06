@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, request, session
 from hashlib import md5
-import pymysql
 
 app = Flask(__name__)
 
@@ -11,15 +10,9 @@ ROLE_USER = 1
 ROLE_ADMIN = 2
 ROLE_TEACHER = 3
 
-def create_connection():
-    return pymysql.connect(  
-        host = '127.0.0.1',
-        user = 'root',
-        password = '13com',
-        db = 'AthleticsDay',
-        charset = 'utf8mb4',
-        cursorclass = pymysql.cursors.DictCursor
-    )
+
+from events import *
+from utils import *
 
 @app.route('/')
 def index():

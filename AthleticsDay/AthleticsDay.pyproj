@@ -28,10 +28,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="events.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="static\css\stylesheet.css" />
     <Content Include="templates\edituser.html" />
+    <Content Include="templates\eventEdit.html" />
+    <Content Include="templates\eventsAdd.html" />
+    <Content Include="templates\eventsByUser.html" />
+    <Content Include="templates\eventsChoose.html" />
+    <Content Include="templates\eventsTickCompleted.html" />
     <Content Include="templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="templates\login.html" />
