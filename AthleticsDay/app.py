@@ -16,13 +16,10 @@ from utils import *
 
 @app.route('/')
 def index():
-    connection = create_connection()
-    with connection.cursor() as cursor:
-        sql = "SELECT eventID, eventName FROM tblEvents;"
-        cursor.execute(sql)
-        events = cursor.fetchall()
-        connection.close()
-    return render_template("index.html", events = events)
+    if session.get("loggedIn"):
+        if session["loggedIn"]:
+            return redirect("/eventsChoose")
+    return redirect("/login")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -48,6 +45,7 @@ def login():
             session['lastName'] = user['lastName']
             session["loggedIn"] = True
             session["roleID"] = user['roleID']
+            session['userID'] = user['userID']
             return redirect('/')
     else:
         return render_template("login.html")
