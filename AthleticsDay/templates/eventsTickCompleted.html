@@ -1,11 +1,33 @@
-<!DOCTYPE html>
+﻿{% extends "_layout.html" %}
+{% block title %}Tick completed events{% endblock %}
+{% block content %}
+    <form class="form" method="post">
+        <table class="table">
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody>
 
-</body>
-</html>
+                {% for event in enteredEvents %}
+                <tr>
+                    <td>{{ event.eventName }}</td>
+                    <td>
+                        <input type="checkbox" name="completed" value="{{ event.entryID }}"
+                               {% if event.completed %}
+                               {{ "checked" }}
+                               {% endif %} />
+
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <input type="submit" name="submit" />
+    </form>
+
+{% endblock %}

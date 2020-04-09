@@ -22,28 +22,44 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Events</a>
-                </li>
                 {% if session["roleID"] == 2 %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users">Users</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eventsAdd">Add event</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/events">Edit events</a>
+                </li>
+                {% endif %}
+                {% if session["roleID"] == 1 %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/eventsChoose">Choose</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eventsTickCompleted">Tick</a>
+                </li>
                 {% endif %}
             </ul>
             {% if session["loggedIn"] %}
-                <span class="navbar-text my-2 my-lg-0">
-                    {{ "%s %s " % (session["firstName"], session["lastName"]) }}
-                </span>
+            <span class="navbar-text my-2 my-lg-0">
+                {{ "%s %s " % (session["firstName"], session["lastName"]) }}
+            </span>
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/logout">Log out<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
             {% else %}
-                <ul class="navbar-nav my-2 my-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/login">Log in<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/register">Register<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login">Log in<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/register">Register<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
             {% endif %}
 
         </div>

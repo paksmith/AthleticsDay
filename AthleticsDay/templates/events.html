@@ -1,0 +1,20 @@
+﻿{% extends "_layout.html" %}
+{% block title %}Athletics day tracker{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.eventName }}</td>
+                <td><a href="/eventEdit?eventID={{ event.eventID }}">edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

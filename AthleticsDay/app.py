@@ -50,6 +50,11 @@ def login():
     else:
         return render_template("login.html")
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect("/")
+
 @app.route("/users")
 def manage_users():
     if session["roleID"] == ROLE_ADMIN:
@@ -64,7 +69,7 @@ def manage_users():
         return redirect("/")
   
 @app.route("/edituser", methods=["GET", "POST"])
-def edit_users():
+def edit_user():
     #First mke sure we have the rights to do this stuff
     if not session["roleID"] == ROLE_ADMIN:
         return redirect("/")
